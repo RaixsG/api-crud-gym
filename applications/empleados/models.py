@@ -32,7 +32,7 @@ class Empleados(models.Model):
     )
     sueldo = models.DecimalField(
         verbose_name = 'Pago de sueldo',
-        max_digits=5,
+        max_digits=6,
         decimal_places=2
     )
 
