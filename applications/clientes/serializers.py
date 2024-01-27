@@ -25,3 +25,7 @@ class AllFrequentClientsSerializer(serializers.ModelSerializer):
             'fecha_ingresada',
             'pago',
         )
+
+class TestSerializer(serializers.Serializer):
+    nombres = serializers.CharField(max_length=200)
+    dni = serializers.CharField(max_length=8)

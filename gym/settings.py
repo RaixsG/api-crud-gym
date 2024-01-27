@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # THird
     'rest_framework',
+    'rest_framework.authtoken',
     "corsheaders",
-    # apps
+    'drf_yasg',
+    # apps local
     'applications.clientes',
     'applications.empleados',
     'applications.productos',
@@ -118,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-PE'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 
