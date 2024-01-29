@@ -7,8 +7,11 @@ from .serializers import (
     AllProductsSerializer,
     AllTypeProductsSerializer,
 )
+# Authorization
+from applications.users.authentications_mixins import Authentication
+
 # Create your views here.
-class ListaProductos(viewsets.ModelViewSet):
+class ListaProductos(Authentication, viewsets.ModelViewSet):
     serializer_class = AllProductsSerializer
     
     queryset = Productos.objects.all()
