@@ -42,7 +42,9 @@ class Productos(models.Model):
     tipo_productos = models.ForeignKey(
         TipoProducto,
         on_delete=models.CASCADE,
-        default=''
+        default='',
+        blank = True,
+        null = True
     )
     
     class Meta:
