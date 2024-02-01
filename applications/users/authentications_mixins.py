@@ -1,7 +1,9 @@
+from rest_framework import authentication, exceptions
 from rest_framework.authentication import get_authorization_header
 from .authentications import ExpiringTokenAuthentication
 
-class Authentication(object):
+class Authentication(authentication.BaseAuthentication):
+    user = None
     
     def get_user(self, request):
         token = get_authorization_header(request).split()
@@ -12,10 +14,17 @@ class Authentication(object):
                 return None
         
             token_expire = ExpiringTokenAuthentication()
-            user, token = token_expire.authenticate_credentials(token)
-            print(token)
+            user = token_expire.authenticate_credentials(token)
+            
+            if user != None:
+                self.user = user
+                return user
+            
         return None
     
-    def dispatch(self, request, *args, **kwargs):
-        user = self.get_user(request)
-        return super().dispatch(request, *args, **kwargs)
+    def authenticate(self, request):
+        self.get_user(request)
+        if self.user is None:
+            raise exceptions.AuthenticationFailed('No se han enviado las credenciales')
+        
+        return (self.user, None)

@@ -7,7 +7,6 @@ class UserTokenSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username','email','first_name','last_name')
 
-"""
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     pass
 
@@ -16,6 +15,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username','email','name','last_name')
 
+"""
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
