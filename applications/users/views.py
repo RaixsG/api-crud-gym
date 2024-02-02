@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -11,6 +12,7 @@ from .serializers import (
     UserListSerializer,
     UserSerializer,
     UpdateUserSerializer,
+    PasswordSerializer
 )
 
 from .serializers import (
@@ -70,6 +72,21 @@ class UserViewSet(viewsets.GenericViewSet):
         if self.queryset is None:
             self.queryset = self.serializer_class().Meta.model.objects.filter(is_active=True).values('id','username','email', 'name',)
         return self.queryset
+    
+    @action(detail=True, methods=['post'])
+    def set_password(self, request, pk=None):
+        user = self.get_object(pk)
+        password_serializer = PasswordSerializer(data=request.data)
+        if password_serializer.is_valid():
+            user.set_password(password_serializer.validated_data['password'])
+            user.save()
+            return Response({
+                'message': 'Contraseña actualizada correctamente'
+            })
+        return Response({
+            'message': 'Hay errores en la información enviada',
+            'errors': password_serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request):
         users = self.get_queryset()

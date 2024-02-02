@@ -31,7 +31,6 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'name', 'last_name')
 
-"""
 class PasswordSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=128, min_length=6, write_only=True)
     password2 = serializers.CharField(max_length=128, min_length=6, write_only=True)
@@ -43,7 +42,6 @@ class PasswordSerializer(serializers.Serializer):
             )
         return data
 
-"""
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
