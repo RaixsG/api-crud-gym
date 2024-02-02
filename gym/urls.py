@@ -34,7 +34,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
-    # path('api/', include('applications.clientes.urls')),
-    # path('api/', include('applications.empleados.urls')),
+    path('usuarios/', include('applications.users.routers')),
     path('app/products/', include('applications.productos.urls')),
 ]
