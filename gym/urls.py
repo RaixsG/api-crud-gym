@@ -36,4 +36,5 @@ urlpatterns = [
     path('logout/', Logout.as_view(), name='logout'),
     path('usuarios/', include('applications.users.routers')),
     path('app/products/', include('applications.productos.urls')),
+    path('type/', include('applications.productos.urls')),
 ]

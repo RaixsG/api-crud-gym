@@ -19,3 +19,9 @@ class AllProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Productos
         fields = ('__all__')
+
+# Serializer Product video
+# class ProductSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Productos
+#         exclude = ()

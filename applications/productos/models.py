@@ -26,6 +26,12 @@ class Productos(models.Model):
         verbose_name = 'Descripcion',
         max_length=50
     )
+    # image = models.ImageField(
+    #     'Imagen del Producto',
+    #     upload_to='productos/',
+    #     blank=True,
+    #     null=True
+    # )
     precio = models.DecimalField(
         verbose_name = 'Precio',
         max_digits=5,
